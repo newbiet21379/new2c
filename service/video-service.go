@@ -1,6 +1,6 @@
 package service
 
-import "aweSomeGin/entity"
+import "github.com/newbiet21379/new2c/entity"
 
 type VideoService interface {
 	Save(video entity.Video) entity.Video

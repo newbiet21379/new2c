@@ -1,10 +1,10 @@
 package main
 
 import (
-	"aweSomeGin/controller"
-	"aweSomeGin/middleware"
-	"aweSomeGin/service"
 	"github.com/gin-gonic/gin"
+	"github.com/newbiet21379/new2c/controller"
+	"github.com/newbiet21379/new2c/middleware"
+	"github.com/newbiet21379/new2c/service"
 	gindump "github.com/tpkeeper/gin-dump"
 	"io"
 	"net/http"

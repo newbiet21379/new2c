@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"aweSomeGin/entity"
-	"aweSomeGin/service"
-	"aweSomeGin/validators"
+	"github.com/newbiet21379/new2c/entity"
+	"github.com/newbiet21379/new2c/service"
+	"github.com/newbiet21379/new2c/validators"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"net/http"
