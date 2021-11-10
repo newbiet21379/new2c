@@ -26,7 +26,7 @@ func main()  {
 
 	server.Static("/css","./templates/css")
 
-	server.LoadHTMLGlob("../templates/*.html")
+	server.LoadHTMLGlob("templates/*.html")
 
 	server.Use(
 		gin.Recovery(),
