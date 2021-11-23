@@ -46,7 +46,6 @@ func main()  {
 			}else{
 				context.JSON(http.StatusOK, gin.H{"message" : "Video Input is Valid!!"})
 			}
-
 		})
 	}
 
