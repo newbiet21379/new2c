@@ -1,11 +1,11 @@
 package controller
 
 import (
+	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"github.com/newbiet21379/new2c/entity"
 	"github.com/newbiet21379/new2c/service"
 	"github.com/newbiet21379/new2c/validators"
-	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 	"net/http"
 )
 
@@ -13,6 +13,13 @@ type VideoController interface {
 	FindAll() []entity.Video
 	Save(ctx *gin.Context) error
 	ShowAll(ctx *gin.Context)
+	UpdateUrl(ctx *gin.Context) error
+	DeleteOne(ctx *gin.Context) error
+}
+
+type URLRequest struct {
+	id string `json:"id"`
+	url string `json:"url"`
 }
 
 type controller struct {
@@ -44,6 +51,29 @@ func (controller *controller) Save(ctx *gin.Context) error {
 		return err
 	}
 	controller.service.Save(video)
+	return nil
+}
+
+func (controller *controller) DeleteOne(ctx *gin.Context) error{
+	var id string
+	id = ctx.Param("id")
+	err := controller.service.DeleteOne(id)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (controller *controller) UpdateUrl(ctx *gin.Context) error{
+	var urlRequest URLRequest
+	err := ctx.ShouldBindJSON(&urlRequest)
+	if err != nil {
+		return err
+	}
+	err = controller.service.UpdateUrl(urlRequest.id,urlRequest.url)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

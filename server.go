@@ -47,6 +47,22 @@ func main()  {
 				context.JSON(http.StatusOK, gin.H{"message" : "Video Input is Valid!!"})
 			}
 		})
+		apiRoutes.DELETE("/video/:id", func(context *gin.Context) {
+			err := videoController.DeleteOne(context)
+			if err != nil {
+				context.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
+			}else{
+				context.JSON(http.StatusOK, gin.H{"message" : "Delete Successfully!!"})
+			}
+		})
+		apiRoutes.PUT("/video/url", func(context *gin.Context) {
+			err := videoController.UpdateUrl(context)
+			if err != nil {
+				context.JSON(http.StatusBadRequest, gin.H{"error":err.Error()})
+			}else{
+				context.JSON(http.StatusOK, gin.H{"message" : "Update URL Successfully!!"})
+			}
+		})
 	}
 
 	viewRoutes := server.Group("/view")

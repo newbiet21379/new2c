@@ -10,7 +10,7 @@ import (
 )
 
 //CreateVideo - Insert a new document in the collection.
-func createVideo(video entity.Video) error {
+func CreateVideo(video entity.Video) error {
 	// Get MongoDB connection using connectionhelper
 	client,err := connectionhelper.GetMongoClient()
 	if err != nil {
@@ -40,9 +40,9 @@ func CreateMany( list []entity.Video ) error{
 		return err
 	}
 	// Create a handle to the respective collection in the database
-	colection := client.Database(connectionhelper.CONNECTIONSTRING).Collection(connectionhelper.VIDEOS)
+	collection := client.Database(connectionhelper.CONNECTIONSTRING).Collection(connectionhelper.VIDEOS)
 	// Perform InsertMany operation & validate against the error
-	_ , err = colection.InsertMany(context.TODO(),insertableList)
+	_ , err = collection.InsertMany(context.TODO(),insertableList)
 	if err != nil {
 		return err
 	}
@@ -108,10 +108,10 @@ func GetAllVideos() ([]entity.Video, error) {
 	return videos, nil
 }
 
-// UpdateURL - Update URL by Author email and Video Title
-func UpdateURL(author string,title string, newUrl string) error {
+// UpdateURL - Update URL by id
+func UpdateURL(id string, newUrl string) error {
 	//Define filter query for fetching specific document from collection
-	filter := bson.D{primitive.E{Key: "title", Value: title},primitive.E{Key: "author.email",Value: author}}
+	filter := bson.D{primitive.E{Key: "_id", Value: id}}
 
 	//Define updater for to specifiy change to be updated.
 	updater := bson.D{primitive.E{Key: "$set", Value: bson.D{
@@ -135,9 +135,9 @@ func UpdateURL(author string,title string, newUrl string) error {
 }
 
 //DeleteOne - Get All videos for collection
-func DeleteOne(author string,title string) error {
+func DeleteOne(id string) error {
 	//Define filter query for fetching specific document from collection
-	filter := bson.D{primitive.E{Key: "title", Value: title},primitive.E{Key: "author.email",Value: author}}
+	filter := bson.D{primitive.E{Key: "_id", Value: id}}
 	//Get MongoDB connection using connectionhelper.
 	client, err := connectionhelper.GetMongoClient()
 	if err != nil {

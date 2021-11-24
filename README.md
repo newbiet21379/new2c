@@ -1,5 +1,7 @@
 # new2c
 
+#An Golang project using MongoDB as database and can use Docker to build 
+
 # Setup
 1. `go get`  - install all dependency
 2. `go build server.go` - Run the project on port 8080
