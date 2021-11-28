@@ -3,7 +3,6 @@ package entity
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type Person struct {
-	ID primitive.ObjectID `bson:"_id" json:"id" omitempty`
 	FirstName string `json:"first_name" binding:"required" bson:"first_name"`
 	LastName string `json:"last_name" binding:"required" bson:"last_name"`
 	Age int8 `json:"age" binding:"gte=1,lte=30" bson:"age"`

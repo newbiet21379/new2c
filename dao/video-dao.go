@@ -18,6 +18,7 @@ func CreateVideo(video entity.Video) error {
 	}
 	// Create a handle to the respective collection in the database
 	collection := client.Database(connectionhelper.DB).Collection(connectionhelper.VIDEOS)
+	video.ID = primitive.NewObjectID()
 	// Perform InsertOne operation & validate against the error.
 	_ , err = collection.InsertOne(context.TODO(),video)
 	if err != nil{

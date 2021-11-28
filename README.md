@@ -1,6 +1,10 @@
 # new2c
 
-#An Golang project using MongoDB as database and can use Docker to build 
+# An Golang project using MongoDB as database and can use Docker to build 
+
+**Use Docker**
+1. `docker build --tag new2c . ` - Build docker image
+2.  `docker run --publish 8080:8080 new2c` - Deploy docker container on port 8080
 
 # Setup
 1. `go get`  - install all dependency
