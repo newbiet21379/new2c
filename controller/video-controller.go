@@ -41,8 +41,11 @@ func (controller *controller) FindAll() []entity.Video {
 }
 
 func (controller *controller) Save(ctx *gin.Context) error {
-	var video entity.Video
-	err := ctx.ShouldBindJSON(&video)
+	var (
+		video entity.Video
+		err error
+	)
+	err = ctx.ShouldBindJSON(&video)
 	if err != nil {
 		return err
 	}
@@ -50,7 +53,10 @@ func (controller *controller) Save(ctx *gin.Context) error {
 	if err != nil {
 		return err
 	}
-	controller.service.Save(video)
+	video,err = controller.service.Save(video)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

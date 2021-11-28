@@ -6,7 +6,7 @@ import (
 )
 
 type VideoService interface {
-	Save(video entity.Video) entity.Video
+	Save(video entity.Video) (entity.Video,error)
 	FindAll() []entity.Video
 	DeleteOne(id string) error
 	UpdateUrl(id string,url string) error
@@ -16,13 +16,13 @@ type videoService struct {
 	videos []entity.Video
 }
 
-func (service *videoService) Save(video entity.Video) entity.Video {
+func (service *videoService) Save(video entity.Video) (entity.Video,error) {
 	var result entity.Video
 	err := dao.CreateVideo(video)
 	if err != nil{
-		return result
+		return result,err
 	}
-	return video
+	return video,nil
 }
 
 func (service *videoService) FindAll() []entity.Video {
