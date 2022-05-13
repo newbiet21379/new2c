@@ -25,13 +25,13 @@ pipeline {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go version'
                 sh 'go get ./...'
-                sh 'go build -o /new2c'
+                sudo sh 'go build -o /new2c'
             }
         }
         stage('deliver') {
             agent any
             steps {
-                sh '/new2c'
+               sudo sh '/new2c'
             }
         }
     }
