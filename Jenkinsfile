@@ -1,22 +1,11 @@
 pipeline {
     // install golang 1.14 on Jenkins node
-    agent {
-        label "golang-1.14"
+    agent any
+    tools {
+        go 'go-1.11'
     }
-    node {
-        // Ensure the desired Go version is installed
-        def root = tool type: 'go', name: 'Go 1.13.8'
-
-        // Export environment variables pointing to the directory where Go was installed
-        withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
-            sh 'go version'
-        }
-    }
-
     environment {
-        GO114MODULE = 'on'
-        CGO_ENABLED = 0
-        GOPATH = "/usr/bin/go"
+        GO111MODULE = 'on'
     }
     stages {
         stage("unit-test") {
