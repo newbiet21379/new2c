@@ -32,7 +32,6 @@ pipeline {
             agent any
             steps {
                 sh '/new2c'
-                }
             }
         }
     }
