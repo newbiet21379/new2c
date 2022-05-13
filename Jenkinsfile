@@ -1,5 +1,8 @@
 pipeline {
     // install golang 1.14 on Jenkins node
+    agent {
+        label "golang-1.14"
+    }
     node {
         // Ensure the desired Go version is installed
         def root = tool type: 'go', name: 'Go 1.13.8'
