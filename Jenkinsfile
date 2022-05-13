@@ -1,6 +1,6 @@
 pipeline {
     // install golang 1.14 on Jenkins node
-    agent { go "1.13.8" }
+    agent any
     environment {
         GO114MODULE = 'on'
         CGO_ENABLED = 0
