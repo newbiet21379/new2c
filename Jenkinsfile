@@ -28,8 +28,8 @@ pipeline {
         stage('deliver') {
             agent any
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Newtome19', usernameVariable: 'beatable2310')]) {
-                sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                sh "docker login --username=${user} --password=${pass}"
                 sh 'docker push beatable2310/new2c:latest'
                 }
             }
