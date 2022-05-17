@@ -15,6 +15,6 @@ COPY / ./
 
 RUN go build -o /new2c
 
-EXPOSE 8080
+EXPOSE 9090
 
 CMD [ "/new2c" ]
