@@ -1,0 +1,14 @@
+services:
+  mongodb:
+    image: mongo:3.4.10
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    restart: unless-stopped
+    networks:
+      - default

@@ -31,7 +31,7 @@ pipeline {
 //                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
 //                 sh "docker login --username=${user} --password=${pass}"
                 sh 'echo "Docker login successful"'
-                sh 'docker run -p 9090:9090 -d beatable2310/new2c:latest'
+                sh 'docker run -p 9090:8080 -d beatable2310/new2c:latest'
 //                 }
             }
         }
