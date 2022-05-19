@@ -20,7 +20,6 @@ pipeline {
             }
         }
         stage("BUILD DOCKER IMAGE") {
-            agent { docker { image 'golang' } }
             steps {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go version'
