@@ -1,6 +1,6 @@
 pipeline {
     // install golang 1.14 on Jenkins node
-    agent { label 'LAPTOP' }
+    agent { label 'laptop-node' }
     environment {
         GO111MODULE = 'on'
 //         DB_NAME=video
