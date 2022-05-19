@@ -3,6 +3,8 @@ pipeline {
     agent { docker { image 'golang' } }
     environment {
         GO111MODULE = 'on'
+//         DB_NAME=video
+//         DB_COLUMN=col_videos
     }
     stages {
         stage("unit-test") {
@@ -17,7 +19,7 @@ pipeline {
 //                 sh 'make functional-tests'
             }
         }
-        stage("build") {
+        stage("BUILD DOCKER IMAGE") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go version'
@@ -25,15 +27,34 @@ pipeline {
                 sh 'docker build . -t beatable2310/new2c:latest'
             }
         }
-        stage('deliver') {
+        stage('PUSH DOCKER IMAGE TO DOCKER HUB') {
             agent any
             steps {
 //                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
 //                 sh "docker login --username=${user} --password=${pass}"
                 sh 'echo "Docker login successful"'
-                sh 'docker run -p 9090:8080 -d beatable2310/new2c:latest'
+                sh 'docker push beatable2310/new2c:latest'
 //                 }
             }
         }
+        stage('BUILD DB') {
+            steps {
+                sh 'docker-compose up -d'
+                sh "echo \"use ${DB_NAME} && db.createCollection('${DB_COLUMN}')\" > demo.js"
+                sh 'docker exec -it mongodb bash -c "mongo < demo.js"'
+            }
+        }
+        stage('DEPLOY TO NODE') {
+            steps {
+
+                sh 'docker pull beatable2310/new2c:latest'
+                sh 'docker run -d -p 8080:8080 beatable2310/new2c:latest'
+            }
+        }
+        post {
+                always {
+                    cleanWs()
+                }
+            }
     }
 }

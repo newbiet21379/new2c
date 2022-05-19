@@ -2,6 +2,7 @@ package connectionhelper
 
 import (
 	"context"
+	"fmt"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -54,6 +55,7 @@ func GetMongoClient() (*mongo.Client, error) {
 			clientInstanceError = err
 		}
 		clientInstance = client
+		fmt.Println("Connected to MongoDB!")
 	})
 	return clientInstance, clientInstanceError
 }
