@@ -1,6 +1,6 @@
 pipeline {
     // install golang 1.14 on Jenkins node
-    agent { label 'LAPTOP' docker { image 'golang' } }
+    agent { label 'LAPTOP' }
     environment {
         GO111MODULE = 'on'
 //         DB_NAME=video
@@ -22,8 +22,8 @@ pipeline {
         stage("BUILD DOCKER IMAGE") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
-//                 sh 'go version'
-//                 sh 'go get ./...'
+                sh 'go version'
+                sh 'go get ./...'
                 sh 'docker build . -t beatable2310/new2c:latest'
             }
         }
