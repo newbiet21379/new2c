@@ -22,8 +22,8 @@ pipeline {
         stage("BUILD DOCKER IMAGE") {
             steps {
                 echo 'BUILD EXECUTION STARTED'
-                sh 'go version'
-                sh 'go get ./...'
+//                 sh 'go version'
+//                 sh 'go get ./...'
                 sh 'docker build . -t beatable2310/new2c:latest'
             }
         }
