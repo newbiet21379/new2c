@@ -6,8 +6,9 @@ pipeline {
 //         DB_NAME=video
 //         DB_COLUMN=col_videos
     }
+    node('Laptop') {
     stages {
-        node('Laptop') {
+
             stage("unit-test") {
                 steps {
                     echo 'UNIT TEST EXECUTION STARTED'
