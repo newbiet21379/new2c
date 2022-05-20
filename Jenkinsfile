@@ -24,7 +24,7 @@ pipeline {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go version'
                 sh 'go get ./...'
-                sh 'docker build . -t beatable2310/new2c:latest'
+                sh 'docker build . -t ghcr.io/beatable2310/new2c:latest'
             }
         }
         stage('PUSH DOCKER IMAGE TO DOCKER HUB') {
@@ -34,7 +34,7 @@ pipeline {
 //                 sh "docker login --username=${user} --password-stdin"
 //                 sh 'echo "Docker login successful"'
 //                 }
-                sh 'docker push beatable2310/new2c:latest'
+                sh 'docker push ghcr.io/beatable2310/new2c:latest'
 //                 }
             }
         }
