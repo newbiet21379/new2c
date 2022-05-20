@@ -31,7 +31,7 @@ pipeline {
             agent any
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                sh "docker login --username=${user} --password=${pass}"
+                sh "cat password.txt | docker login --username=${user} --password-stdin"
                 sh 'echo "Docker login successful"'
                 sh 'docker push beatable2310/new2c:latest'
                 }
