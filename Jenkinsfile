@@ -34,8 +34,6 @@ pipeline {
 //                 sh "docker login --username=${user} --password-stdin"
 //                 sh 'echo "Docker login successful"'
 //                 }
-                echo 'PUSH EXECUTION STARTED'
-                sh 'docker login -u beatable2310 -p Newtome19'
                 sh 'docker push beatable2310/new2c:latest'
 //                 }
             }
