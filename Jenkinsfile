@@ -30,11 +30,14 @@ pipeline {
         stage('PUSH DOCKER IMAGE TO DOCKER HUB') {
             agent any
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                sh "cat password.txt | docker login --username=${user} --password-stdin"
-                sh 'echo "Docker login successful"'
+//                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+//                 sh "docker login --username=${user} --password-stdin"
+//                 sh 'echo "Docker login successful"'
+//                 }
+                echo 'PUSH EXECUTION STARTED'
+                sh 'docker login -u beatable2310 -p Newtome19'
                 sh 'docker push beatable2310/new2c:latest'
-                }
+//                 }
             }
         }
         stage('BUILD DB') {
